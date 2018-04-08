@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+	<h1>Web Page</h1>
+	<p>Paragraph</p>
+
+	<p>Click the button to get your coordinates.</p>
+
+	<button onclick="getLocation()">Try It</button>
+
+	<p id="demo"></p>
+
+	<script>
+
+		var x = document.getElementById("demo");
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else {
+				x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+		}
+		function showPosition(position) {
+			x.innerHTML = "Latitude: " + position.coords.latitude + 
+			"<br>Longitude: " + position.coords.longitude; 
+		}
+
+		if (window.DeviceOrientationEvent) {
+			window.addEventListener("deviceorientation", deviceOrientationListener);
+		} else {
+			alert("Sorry, your browser doesn't support Device Orientation");
+		}
+	</script>
+
+</body>
+</html>
