@@ -10,26 +10,33 @@
 	<button onclick="getLocation()">Try It</button>
 
 	<p id="demo"></p>
+	<p id="demo"></p>
 
 	<script>
 
 		var x = document.getElementById("demo");
+		var y = document.getElementById("demo2");
 		function getLocation() {
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition(showPosition);
 			} else {
 				x.innerHTML = "Geolocation is not supported by this browser.";
 			}
+
 		}
 		function showPosition(position) {
+
 			x.innerHTML = "Latitude: " + position.coords.latitude + 
 			"<br>Longitude: " + position.coords.longitude; 
 		}
 
-		if (window.DeviceOrientationEvent) {
+		function deviceOrientationListener(event){
+			if (window.DeviceOrientationEvent) {
 			window.addEventListener("deviceorientation", deviceOrientationListener);
-		} else {
+				y.innerHTML = "<br>Alpha " + event.alpha;
+			}	 else {
 			alert("Sorry, your browser doesn't support Device Orientation");
+			}
 		}
 	</script>
 
